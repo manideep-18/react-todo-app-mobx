@@ -1,0 +1,33 @@
+.todo-bottom-component-styles {
+  display: flex;
+  flex: 1;
+  height: 50px;
+  padding: 18px;
+  background: white;
+}
+.button-style {
+  margin-left: 10px;
+  border: none;
+  background: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.button-active-style {
+  margin-left: 10px;
+  background: none;
+  border-radius: 5px;
+  border: 2px solid rgba(175, 47, 47, 0.2);
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.button-style-clear-completed {
+  display: flex;
+  flex: 1;
+  border: none;
+  background: none;
+  text-align: center;
+}

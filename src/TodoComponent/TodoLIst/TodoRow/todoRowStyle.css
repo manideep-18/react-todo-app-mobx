@@ -1,0 +1,48 @@
+.icon-style{
+    margin:5px;
+    height:40px;
+    width:40px; 
+}
+.icon-style-close{
+    margin-top:15px;
+    display: flex;
+    height:30px;
+    width:30px;
+}
+.icon-style-completed-todo{
+    display: flex;
+    margin-left:5px;
+    height:60px;
+    width:60px; 
+}
+.todo-row-styles{
+    display:flex;
+    flex:1;
+    flex-direction:row;
+}
+.edit-styles{
+    display:flex;
+    flex:1;
+    flex-direction: row;
+    align-items: center;
+}
+.edit-text-styles{
+    display:flex;
+    flex:1;
+    color: #4d4d4d;
+    height:50px;
+    padding:18px;
+    font-size: 24px;
+    border-color:#e1e1e1;
+    border-radius:2px;
+}
+.todo-completed-item{
+    text-decoration:line-through;
+    color: #d9d9d9;
+}
+.todo-edit-input-style{
+    display:flex;
+    flex:1;
+    border-bottom: #e1e1e1;
+    margin-left:40px;
+}
