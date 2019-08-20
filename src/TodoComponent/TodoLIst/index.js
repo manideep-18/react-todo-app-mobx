@@ -2,35 +2,32 @@ import React from "react";
 // import "./todoLIstStyle.css";
 import TodoRow from "./TodoRow";
 import { TodoListContainer } from "./styledComponents.js";
+import { inject } from "mobx-react";
 
+@inject("todoStore")
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleUpdate = todoEachItemId => {
+  /*handleUpdate = todoEachItemId => {
     //console.log("TL");
     this.props.onTodoChange(todoEachItemId);
-  };
-  handleChangeEdit = (todoItemId, todoDescriptionEditId) => {
+  };*/
+  /*handleChangeEdit = (todoItemId, todoDescriptionEditId) => {
     this.props.onTodoEditChange(todoItemId, todoDescriptionEditId);
-  };
-  handleCloseChange = todoCloseItemId => {
+  };*/
+  /*handleCloseChange = todoCloseItemId => {
     this.props.onTodoCloseChange(todoCloseItemId);
-  };
+  };*/
   displayTodoList = () => {
     let todoListDisplay = [];
-    const todoArray = this.props.todoArray;
+    const todoArray = this.props.todoStore.getAppliedFilterList;
     const len = todoArray.length;
     //console.log(todoArray);
     for (var i = 0; i < len; i++) {
       const todoItem = (
         <TodoListContainer>
-          <TodoRow
-            todoItem={todoArray[i]}
-            todosUpdate={this.handleUpdate}
-            onTodoClose={this.handleCloseChange}
-            onTodoEdit={this.handleChangeEdit}
-          />
+          <TodoRow todoItem={todoArray[i]} />
         </TodoListContainer>
       );
       todoListDisplay.push(todoItem);

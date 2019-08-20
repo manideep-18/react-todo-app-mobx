@@ -12,8 +12,9 @@ import {
   IconCompletedstyle,
   TextCompletedStyle
 } from "./styledComponents.js";
+import { inject } from "mobx-react";
 // import "./todoRowStyle.css";
-
+@inject("todoStore")
 class TodoRow extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,10 @@ class TodoRow extends React.Component {
   handleKeyDown = event => {
     if (event.key === "Enter") {
       //console.log("Mani");
-      this.props.onTodoEdit(this.props.todoItem.todoId, this.state.value);
+      this.props.todoStore.todoEdit(
+        this.props.todoItem.todoId,
+        this.state.value
+      );
       this.setState({ isEditMode: false });
     }
   };
@@ -37,11 +41,11 @@ class TodoRow extends React.Component {
     //console.log(this.state.isEditMode);
   };
   handleCloseChange = e => {
-    this.props.onTodoClose(this.props.todoItem.todoId);
+    this.props.todoStore.deleteTodo(this.props.todoItem.todoId);
   };
   handleClick = e => {
     ////console.log("TR");
-    this.props.todosUpdate(this.props.todoItem.todoId);
+    this.props.todoStore.todosUpdate(this.props.todoItem.todoId);
   };
   renderEdit = () => {
     const todoEditItem = (

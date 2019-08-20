@@ -1,0 +1,25 @@
+todo
+--[]TodoInput 
+--[]TodoList
+    --[]TodoRow
+--[]TodoButtonComponent
+
+todoStore
+    observable
+            todoArray
+            appliedFilter
+    actions 
+        clearCompleted
+        addTodo
+        deleteTodo
+    computed
+        getAppliedFilterList
+
+todoModel
+    id
+    observable
+        description
+        isCompleted
+    actions 
+        updateDescription
+        updateIsCompletedStatus

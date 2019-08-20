@@ -11,7 +11,10 @@ import {
   ClearCompletedComponent,
   ClearCompletedButton
 } from "./styledComponents.js";
+import { inject, observer } from "mobx-react";
 
+@inject("todoStore")
+@observer
 class TodoButtonComponent extends React.Component {
   presentStatus = "";
   constructor(props) {
@@ -20,25 +23,27 @@ class TodoButtonComponent extends React.Component {
   }
   displayActiveTodo = () => {
     //console.log("deep",this.props.todoArray);
-    const todoArray = this.props.todoArray.filter(
+    const todoArray = this.props.todoStore.getgetAppliedFilterList.filter(
       todoItem => todoItem.todoIsCompleted === false
     );
     this.state.todoArrayActiveLength = todoArray.length;
   };
   handleAllClick = () => {
-    this.presentStatus = "All";
-    this.props.onTodoListTypeChange(this.presentStatus);
+    //this.presentStatus = "All";
+    this.props.todoStore.updateApplyFilter("All");
   };
   handleActiveClick = () => {
-    this.presentStatus = "Active";
-    this.props.onTodoListTypeChange(this.presentStatus);
+    // this.presentStatus = "Active";
+    // this.props.onTodoListTypeChange(this.presentStatus);
+    this.props.todoStore.updateApplyFilter("Active");
   };
   handleCompletedClick = () => {
-    this.presentStatus = "Completed";
-    this.props.onTodoListTypeChange(this.presentStatus);
+    // this.presentStatus = "Completed";
+    // this.props.onTodoListTypeChange(this.presentStatus);
+    this.props.todoStore.updateApplyFilter("Completed");
   };
   handleClearCompletedClick = () => {
-    this.props.onClearCompletedChange();
+    this.props.todoStore.ClearCompleted();
   };
   render() {
     //console.log(this.props.listType);
