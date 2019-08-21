@@ -3,7 +3,7 @@ import TodoRow from "./TodoRow";
 import { TodoListContainer, TodoListBg } from "./styledComponents.js";
 import { inject, observer } from "mobx-react";
 
-@inject("todo", "todoStore")
+@inject("todoStore")
 @observer
 class TodoList extends React.Component {
   constructor(props) {

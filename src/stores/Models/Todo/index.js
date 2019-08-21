@@ -4,10 +4,9 @@ class Todo {
   todoId;
   @observable todoDescription;
   @observable todoIsCompleted;
-  constructor(rootStore) {
+  constructor() {
     this.todoId = id++;
     this.todoIsCompleted = false;
-    this.rootStore = rootStore;
   }
   @action updateDescription = currentDescription => {
     this.todoDescription = currentDescription;

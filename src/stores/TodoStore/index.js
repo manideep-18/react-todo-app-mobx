@@ -5,9 +5,6 @@ class TodoStore {
   todoChangeIndex = 0;
   @observable todoArray = [];
   @observable applyFilter = "All";
-  constructor(rootStore) {
-    this.rootStore = rootStore;
-  }
   @action deleteTodo = todoCloseId => {
     const todosArray = this.todoArray.filter(
       todoItem => todoItem.todoId !== todoCloseId

@@ -9,16 +9,15 @@ import {
   TodoAllComponentsContainer
 } from "./styledComponents.js";
 import RootStore from "../RootStore";
-const rootStore = new RootStore();
+import TodoStore from "../stores/TodoStore";
+import Todo from "../stores/Models/Todo";
+const todoStore = new TodoStore();
+const todo = new Todo();
 
 class TodoComponent extends React.Component {
   render() {
     return (
-      <Provider
-        rootStore={rootStore}
-        todoStore={rootStore.todoStore}
-        todo={rootStore.todo}
-      >
+      <Provider todoStore={todoStore} todo={todo}>
         <TodoMainComponent>
           <TodoText>todos</TodoText>
           <TodoAllComponentsContainer>
