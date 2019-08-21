@@ -7,11 +7,7 @@ const todoStore = new TodoStore();
 
 class App extends React.Component {
   render() {
-    return (
-      <div>
-        <TodoComponent />
-      </div>
-    );
+    return <TodoComponent />;
   }
 }
 export default App;

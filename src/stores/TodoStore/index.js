@@ -6,9 +6,13 @@ class TodoStore {
   //todoItemsActive=0;
   @observable todoArray = [];
   @observable applyFilter = "All";
-
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+  }
   @action deleteTodo = todoCloseId => {
-    const todosArray = this.state.todoArray.filter(
+    // console.log("mani", todoCloseId);
+
+    const todosArray = this.todoArray.filter(
       todoItem => todoItem.todoId !== todoCloseId
     );
     // this.setState({ todoArray: todosArray });
@@ -17,7 +21,7 @@ class TodoStore {
 
   @action ClearCompleted = () => {
     ////console.log("fghjkl");
-    const todosArray = this.state.todoArray.filter(
+    const todosArray = this.todoArray.filter(
       todoItem => todoItem.todoIsCompleted === false
     );
     // this.setState({ todoArray: todosArray });
@@ -34,7 +38,7 @@ class TodoStore {
   };
 
   @action todosUpdate = todoId => {
-    console.log(this.todoArray[todoId].todoIsCompleted);
+    // console.log(this.todoArray[todoId].todoIsCompleted);
     this.todoArray[todoId].updateIsCompletedStatus();
   };
 

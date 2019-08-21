@@ -22,4 +22,5 @@ export const TodoInputBox = styled.input`
   border: 2px #f5f5f5;
   margin-left: 20px;
   padding: 18px;
+  width: 100%;
 `;

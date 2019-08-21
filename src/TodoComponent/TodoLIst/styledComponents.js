@@ -1,4 +1,6 @@
 import styled from "styled-components";
+
+export const TodoListBg = styled.div``;
 export const TodoListContainer = styled.div`
   display: flex;
   flex: "1";

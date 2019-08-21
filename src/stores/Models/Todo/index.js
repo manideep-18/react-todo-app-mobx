@@ -1,12 +1,13 @@
 import { observable, computed, action } from "mobx";
-
+var id = 0;
 class Todo {
-  id = 0;
+  todoId;
   @observable todoDescription;
   @observable todoIsCompleted;
-  constructor() {
-    this.id = this.id + 1;
+  constructor(rootStore) {
+    this.todoId = id++;
     this.todoIsCompleted = false;
+    this.rootStore = rootStore;
   }
   @action updateDescription = currentDescription => {
     this.todoDescription = currentDescription;

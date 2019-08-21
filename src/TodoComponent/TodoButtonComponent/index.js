@@ -1,5 +1,4 @@
 import React from "react";
-// import "./todoButtonComponentStyles.css";
 import {
   TodoBottomComponent,
   ActiveListItems,
@@ -16,42 +15,31 @@ import { inject, observer } from "mobx-react";
 @inject("todoStore")
 @observer
 class TodoButtonComponent extends React.Component {
-  presentStatus = "";
   todoArrayActiveLength = 0;
   constructor(props) {
     super(props);
-    // this.state = { todoArrayActiveLength: 0 };
   }
   displayActiveTodo = () => {
-    // console.log("deep");
     const todosArray = this.props.todoStore.AppliedFilterList;
-    // console.log("mani", todosArray);
     const todoArray = todosArray.filter(
       todoItem => todoItem.todoIsCompleted === false
     );
     const len = todoArray.length;
-    // console.log(len);
     this.todoArrayActiveLength = len;
   };
   handleAllClick = () => {
-    //this.presentStatus = "All";
     this.props.todoStore.updateApplyFilter("All");
   };
   handleActiveClick = () => {
-    // this.presentStatus = "Active";
-    // this.props.onTodoListTypeChange(this.presentStatus);
     this.props.todoStore.updateApplyFilter("Active");
   };
   handleCompletedClick = () => {
-    // this.presentStatus = "Completed";
-    // this.props.onTodoListTypeChange(this.presentStatus);
     this.props.todoStore.updateApplyFilter("Completed");
   };
   handleClearCompletedClick = () => {
     this.props.todoStore.ClearCompleted();
   };
   render() {
-    // console.log("mani8");
     return (
       <TodoBottomComponent>
         <ActiveListItems>

@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   TodoRowContainer,
   CloseIconStyleOnEdit,
@@ -12,21 +11,20 @@ import {
   IconCompletedstyle,
   TextCompletedStyle
 } from "./styledComponents.js";
-import { inject } from "mobx-react";
-import { observer } from "mobx-react-lite";
-// import "./todoRowStyle.css";
-@inject("todoStore")
+import { inject, observer } from "mobx-react";
+
+@inject("todoStore", "todo")
+@observer
 class TodoRow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isEditMode: false, value: "" };
+    this.state = { isEditMode: false, value: "", click: false };
   }
   handleChange = event => {
     this.setState({ value: event.target.value });
   };
   handleKeyDown = event => {
     if (event.key === "Enter") {
-      //console.log("Mani");
       this.props.todoItem.updateDescription(this.state.value);
       this.setState({ isEditMode: false });
     }
@@ -36,13 +34,11 @@ class TodoRow extends React.Component {
       isEditMode: !this.state.isEditMode,
       value: this.props.todoItem.todoDescription
     });
-    //console.log(this.state.isEditMode);
   };
   handleCloseChange = e => {
     this.props.todoStore.deleteTodo(this.props.todoItem.todoId);
   };
   handleClick = e => {
-    ////console.log("TR");
     this.props.todoItem.updateIsCompletedStatus();
   };
   renderEdit = () => {
@@ -56,12 +52,9 @@ class TodoRow extends React.Component {
         />
       </EditInputStyleContainer>
     );
-
-    //console.log(this.state.value);
     return todoEditItem;
   };
   renderDefault = () => {
-    // console.log("mani8");
     const descriptionTodoActiveItem = this.props.todoItem.todoDescription;
     return (
       <>
@@ -73,7 +66,6 @@ class TodoRow extends React.Component {
     );
   };
   renderActive = () => {
-    // console.log("mani");
     const todoActiveElelement = (
       <TodoRowActiveStyles>
         {this.state.isEditMode ? this.renderEdit() : this.renderDefault()}
@@ -92,9 +84,7 @@ class TodoRow extends React.Component {
     return todoCompletedElement;
   };
   renderTodo = () => {
-    // console.log(this.props.todoItem);
     const isCompleted = this.props.todoItem.todoIsCompleted;
-    // console.log(isCompleted);
     if (isCompleted === false) {
       return this.renderActive();
     } else {
@@ -102,7 +92,6 @@ class TodoRow extends React.Component {
     }
   };
   render() {
-    // console.log("mani");
     return (
       <TodoRowContainer>
         {this.renderTodo()}
