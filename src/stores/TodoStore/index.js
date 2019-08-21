@@ -3,47 +3,30 @@ import Todo from "../Models/Todo";
 class TodoStore {
   todoIndex = 0;
   todoChangeIndex = 0;
-  //todoItemsActive=0;
   @observable todoArray = [];
   @observable applyFilter = "All";
   constructor(rootStore) {
     this.rootStore = rootStore;
   }
   @action deleteTodo = todoCloseId => {
-    // console.log("mani", todoCloseId);
-
     const todosArray = this.todoArray.filter(
       todoItem => todoItem.todoId !== todoCloseId
     );
-    // this.setState({ todoArray: todosArray });
     this.todoArray = todosArray;
   };
 
   @action ClearCompleted = () => {
-    ////console.log("fghjkl");
     const todosArray = this.todoArray.filter(
       todoItem => todoItem.todoIsCompleted === false
     );
-    // this.setState({ todoArray: todosArray });
-    //console.log("treq",this.state.todoArray);
+
     this.todoArray = todosArray;
   };
 
   @action addTodo = todoEachDescription => {
-    // console.log("mani");
     const todo = new Todo();
     todo.updateDescription(todoEachDescription);
     this.todoArray.push(todo);
-    //this.setState({ todoArray: allTodoElements });
-  };
-
-  @action todosUpdate = todoId => {
-    // console.log(this.todoArray[todoId].todoIsCompleted);
-    this.todoArray[todoId].updateIsCompletedStatus();
-  };
-
-  @action todoEdit = (todoId, todoEachDescription) => {
-    this.todoArray[todoId].updateDescription(todoEachDescription);
   };
 
   @action updateApplyFilter = filterType => {
@@ -53,10 +36,7 @@ class TodoStore {
     return this.todoArray.length;
   }
   @computed get AppliedFilterList() {
-    //this.setState({todoListType:"All"});
-    // console.log(this.applyFilter);
     if (this.applyFilter === "Active") {
-      //      this.todoItemsActive=this.todoItemsActive+1;
       const todosArray = this.todoArray.filter(
         todoItem => todoItem.todoIsCompleted === false
       );
