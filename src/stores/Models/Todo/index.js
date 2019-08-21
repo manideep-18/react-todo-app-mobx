@@ -2,17 +2,17 @@ import { observable, computed, action } from "mobx";
 
 class Todo {
   id = 0;
-  @observable description;
-  @observable isCompleted;
+  @observable todoDescription;
+  @observable todoIsCompleted;
   constructor() {
-    id = id + 1;
-    this.isCompleted = false;
+    this.id = this.id + 1;
+    this.todoIsCompleted = false;
   }
   @action updateDescription = currentDescription => {
-    this.description = currentDescription;
+    this.todoDescription = currentDescription;
   };
   @action updateIsCompletedStatus = () => {
-    this.isCompleted = !this.isCompleted;
+    this.todoIsCompleted = !this.todoIsCompleted;
   };
 }
 

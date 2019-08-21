@@ -14,6 +14,7 @@ const todoStore = new TodoStore();
 
 class TodoComponent extends React.Component {
   render() {
+    // console.log("mani");
     return (
       <Provider todoStore={todoStore}>
         <TodoMainComponent>

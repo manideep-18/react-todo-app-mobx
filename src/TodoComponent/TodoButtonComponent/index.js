@@ -17,16 +17,21 @@ import { inject, observer } from "mobx-react";
 @observer
 class TodoButtonComponent extends React.Component {
   presentStatus = "";
+  todoArrayActiveLength = 0;
   constructor(props) {
     super(props);
-    this.state = { todoArrayActiveLength: 0 };
+    // this.state = { todoArrayActiveLength: 0 };
   }
   displayActiveTodo = () => {
-    //console.log("deep",this.props.todoArray);
-    const todoArray = this.props.todoStore.getgetAppliedFilterList.filter(
+    // console.log("deep");
+    const todosArray = this.props.todoStore.AppliedFilterList;
+    // console.log("mani", todosArray);
+    const todoArray = todosArray.filter(
       todoItem => todoItem.todoIsCompleted === false
     );
-    this.state.todoArrayActiveLength = todoArray.length;
+    const len = todoArray.length;
+    // console.log(len);
+    this.todoArrayActiveLength = len;
   };
   handleAllClick = () => {
     //this.presentStatus = "All";
@@ -46,14 +51,14 @@ class TodoButtonComponent extends React.Component {
     this.props.todoStore.ClearCompleted();
   };
   render() {
-    //console.log(this.props.listType);
+    // console.log("mani8");
     return (
       <TodoBottomComponent>
         <ActiveListItems>
           {this.displayActiveTodo()}
-          {this.state.todoArrayActiveLength > 0 ? (
+          {this.todoArrayActiveLength > 0 ? (
             <ActiveListItemsText>
-              {this.state.todoArrayActiveLength}items Left
+              {this.todoArrayActiveLength}items Left
             </ActiveListItemsText>
           ) : null}
         </ActiveListItems>

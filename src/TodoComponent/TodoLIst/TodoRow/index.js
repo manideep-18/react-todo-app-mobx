@@ -13,6 +13,7 @@ import {
   TextCompletedStyle
 } from "./styledComponents.js";
 import { inject } from "mobx-react";
+import { observer } from "mobx-react-lite";
 // import "./todoRowStyle.css";
 @inject("todoStore")
 class TodoRow extends React.Component {
@@ -26,10 +27,7 @@ class TodoRow extends React.Component {
   handleKeyDown = event => {
     if (event.key === "Enter") {
       //console.log("Mani");
-      this.props.todoStore.todoEdit(
-        this.props.todoItem.todoId,
-        this.state.value
-      );
+      this.props.todoItem.updateDescription(this.state.value);
       this.setState({ isEditMode: false });
     }
   };
@@ -45,7 +43,7 @@ class TodoRow extends React.Component {
   };
   handleClick = e => {
     ////console.log("TR");
-    this.props.todoStore.todosUpdate(this.props.todoItem.todoId);
+    this.props.todoItem.updateIsCompletedStatus();
   };
   renderEdit = () => {
     const todoEditItem = (
@@ -63,6 +61,7 @@ class TodoRow extends React.Component {
     return todoEditItem;
   };
   renderDefault = () => {
+    // console.log("mani8");
     const descriptionTodoActiveItem = this.props.todoItem.todoDescription;
     return (
       <>
@@ -74,6 +73,7 @@ class TodoRow extends React.Component {
     );
   };
   renderActive = () => {
+    // console.log("mani");
     const todoActiveElelement = (
       <TodoRowActiveStyles>
         {this.state.isEditMode ? this.renderEdit() : this.renderDefault()}
@@ -92,9 +92,9 @@ class TodoRow extends React.Component {
     return todoCompletedElement;
   };
   renderTodo = () => {
-    ////console.log(this.props.todoItem);
+    // console.log(this.props.todoItem);
     const isCompleted = this.props.todoItem.todoIsCompleted;
-    ////console.log(isCompleted);
+    // console.log(isCompleted);
     if (isCompleted === false) {
       return this.renderActive();
     } else {
@@ -102,7 +102,7 @@ class TodoRow extends React.Component {
     }
   };
   render() {
-    //console.log("mani", this.props.todoItem);
+    // console.log("mani");
     return (
       <TodoRowContainer>
         {this.renderTodo()}

@@ -26,6 +26,7 @@ class TodoStore {
   };
 
   @action addTodo = todoEachDescription => {
+    // console.log("mani");
     const todo = new Todo();
     todo.updateDescription(todoEachDescription);
     this.todoArray.push(todo);
@@ -33,6 +34,7 @@ class TodoStore {
   };
 
   @action todosUpdate = todoId => {
+    console.log(this.todoArray[todoId].todoIsCompleted);
     this.todoArray[todoId].updateIsCompletedStatus();
   };
 
@@ -43,19 +45,19 @@ class TodoStore {
   @action updateApplyFilter = filterType => {
     this.applyFilter = filterType;
   };
-  @computed todoArraylength = () => {
+  @computed get todoArraylength() {
     return this.todoArray.length;
-  };
-  @computed getAppliedFilterList = () => {
+  }
+  @computed get AppliedFilterList() {
     //this.setState({todoListType:"All"});
-    //console.log(this.state.todoListType);
-    if (this.todoListType === "Active") {
+    // console.log(this.applyFilter);
+    if (this.applyFilter === "Active") {
       //      this.todoItemsActive=this.todoItemsActive+1;
       const todosArray = this.todoArray.filter(
         todoItem => todoItem.todoIsCompleted === false
       );
       return todosArray;
-    } else if (this.todoListType === "Completed") {
+    } else if (this.applyFilter === "Completed") {
       const todosArray = this.todoArray.filter(
         todoItem => todoItem.todoIsCompleted === true
       );
@@ -63,6 +65,6 @@ class TodoStore {
     } else {
       return this.todoArray;
     }
-  };
+  }
 }
 export default TodoStore;

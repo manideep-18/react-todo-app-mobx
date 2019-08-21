@@ -23,6 +23,7 @@ class TodoInput extends React.Component {
     }
   };
   render() {
+    // console.log(this.props.todoStore.applyFilter);
     return (
       <TodoInputContainer>
         <TodoInputTextImage src="indexInput.png" />
