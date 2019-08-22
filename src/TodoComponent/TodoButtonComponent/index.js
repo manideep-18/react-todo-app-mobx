@@ -4,13 +4,11 @@ import {
   ActiveListItems,
   ActiveListItemsText,
   ButtonsListComponent,
-  AllButtonComponent,
-  ActiveButtonComponent,
-  CompletedButtonComponent,
   ClearCompletedComponent,
   ClearCompletedButton
 } from "./styledComponents.js";
 import { inject, observer } from "mobx-react";
+import ApplyFilterButton from "./ApplyFilterButton/index.js";
 
 @inject("todoStore")
 @observer
@@ -27,15 +25,7 @@ class TodoButtonComponent extends React.Component {
     const len = todoArray.length;
     this.todoArrayActiveLength = len;
   };
-  handleAllClick = () => {
-    this.props.todoStore.updateApplyFilter("All");
-  };
-  handleActiveClick = () => {
-    this.props.todoStore.updateApplyFilter("Active");
-  };
-  handleCompletedClick = () => {
-    this.props.todoStore.updateApplyFilter("Completed");
-  };
+
   handleClearCompletedClick = () => {
     this.props.todoStore.ClearCompleted();
   };
@@ -51,21 +41,9 @@ class TodoButtonComponent extends React.Component {
           ) : null}
         </ActiveListItems>
         <ButtonsListComponent>
-          <AllButtonComponent listType="All" onClick={this.handleAllClick}>
-            All
-          </AllButtonComponent>
-          <ActiveButtonComponent
-            listType="Active"
-            onClick={this.handleActiveClick}
-          >
-            Active
-          </ActiveButtonComponent>
-          <CompletedButtonComponent
-            listType="Completed"
-            onClick={this.handleCompletedClick}
-          >
-            Completed
-          </CompletedButtonComponent>
+          <ApplyFilterButton filter="All" />
+          <ApplyFilterButton filter="Active" />
+          <ApplyFilterButton filter="Completed" />
         </ButtonsListComponent>
         <ClearCompletedComponent>
           <ClearCompletedButton onClick={this.handleClearCompletedClick}>

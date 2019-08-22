@@ -8,7 +8,6 @@ import {
   TodoText,
   TodoAllComponentsContainer
 } from "./styledComponents.js";
-import RootStore from "../RootStore";
 import TodoStore from "../stores/TodoStore";
 import Todo from "../stores/Models/Todo";
 const todoStore = new TodoStore();

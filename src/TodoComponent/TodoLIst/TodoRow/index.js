@@ -25,8 +25,12 @@ class TodoRow extends React.Component {
   };
   handleKeyDown = event => {
     if (event.key === "Enter") {
-      this.props.todoItem.updateDescription(this.state.value);
-      this.setState({ isEditMode: false });
+      if (this.state.value === "") {
+        this.props.todoStore.deleteTodo(this.props.todoItem.todoId);
+      } else {
+        this.props.todoItem.updateDescription(this.state.value);
+        this.setState({ isEditMode: false });
+      }
     }
   };
   handleDoubleClick = () => {
