@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-export const TodoBottomComponent = styled.div`
+export const TodoBottonComponentBg = styled.div`
   display: flex;
   flex: 1;
   height: 50px;
