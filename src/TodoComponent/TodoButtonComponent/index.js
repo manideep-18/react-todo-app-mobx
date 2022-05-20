@@ -5,7 +5,7 @@ import {
   ButtonsListComponent,
   ClearCompletedComponent,
   ClearCompletedButton,
-  TodoBottonComponentBg
+  TodoBottonComponentBg,
 } from "./styledComponents.js";
 import { inject, observer } from "mobx-react";
 import ApplyFilterButton from "./ApplyFilterButton/index.js";
@@ -19,15 +19,16 @@ class TodoButtonComponent extends React.Component {
   }
   displayActiveTodo = () => {
     const todoArray = this.props.todoStore.AppliedFilterList.filter(
-      todoItem => todoItem.todoIsCompleted === false
+      (todoItem) => todoItem.todoIsCompleted === false
     );
-    const len = todoArray.lenssgth;
+    const len = todoArray.length;
     this.todoArrayActiveLength = len;
   };
 
   handleClearCompletedClick = () => {
     this.props.todoStore.ClearCompleted();
   };
+
   render() {
     return (
       <TodoBottonComponentBg>
@@ -35,7 +36,7 @@ class TodoButtonComponent extends React.Component {
           {this.displayActiveTodo()}
           {this.todoArrayActiveLength > 0 ? (
             <ActiveListItemsText>
-              {this.todoArrayActiveLength}items Left
+              {this.todoArrayActiveLength} active items Left
             </ActiveListItemsText>
           ) : null}
         </ActiveListItems>
